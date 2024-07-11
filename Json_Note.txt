@@ -1,0 +1,17 @@
+1. string jsonString = SerializeJson(invoicedoc); --> assume the invoice is the class
+    byte[] docHash = Sha256Hash(jsonString);  --> docHash
+
+2. byte[] sign = SignData(docHash); --> sign the data become Sig digest
+
+3. The certificate serialnumber is BigInteger or Int64
+   convert via  Int64.Parse(cert.SerialNumber, NumberStyles.HexNumber);
+   in json file should look like this
+     "X509SerialNumber":[{"_" : 352825}]
+
+4. the certificate hash
+      byte[] rawcertbytes = cert.RawData;
+      byte[] certbytes = Sha256HashBytes(rawcertbytes);
+      certDigest =Convert.ToBase64String(certbytes);
+      x509Certificate =  Convert.ToBase64String(rawcertbytes);  -- certificate data
+   
+5. the signTime =  DateTime.UtcNow().ToString("yyyy-MM-ddTHH:mm:ssZ");
