@@ -93,6 +93,31 @@ namespace EInvoiceAPI.Utility
             }
         }
 
+         //this will get the certDigest
+        public static string GetCertHash(X509Certificate2 cert)
+        {
+            byte[] rawcertbytes = cert.RawData;
+            byte[] certbytes = Sha256HashBytes(rawcertbytes);
+
+            return Convert.ToBase64String(certbytes);
+        }
+
+        // this will get the cert raw data and put into Json's X509Certificate
+        public static string GetX509Certificate(X509Certificate2 cert)
+        {
+            byte[] rawcertbytes = cert.RawData;
+            return Convert.ToBase64String(rawcertbytes);
+
+        }
+
+        //Get Certificate number, need to convert to Int64
+        public static Int64 GetCertSerialNumber(X509Certificate2 cert)
+        {
+            return Int64.Parse(cert.SerialNumber, NumberStyles.HexNumber);
+
+        }
+
+        //to sign the data become sign digest
         public static byte[] SignData(byte[] hashdata, X509Certificate2 cert)
         {
             byte[] signedData = null;
