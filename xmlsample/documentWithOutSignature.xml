@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+  <cbc:ID>IV0000010134444</cbc:ID>
+  <cbc:IssueDate>2024-07-16</cbc:IssueDate>
+  <cbc:IssueTime>03:36:00Z</cbc:IssueTime>
+  <cbc:InvoiceTypeCode listVersionID="1.0">01</cbc:InvoiceTypeCode>
+  <cbc:DocumentCurrencyCode>MYR</cbc:DocumentCurrencyCode>
+  <cac:BillingReference>
+    <cac:AdditionalDocumentReference>
+      <cbc:ID>IV0000010134444</cbc:ID>
+    </cac:AdditionalDocumentReference>
+  </cac:BillingReference>
+  <cac:Signature>
+    <cbc:ID>urn:oasis:names:specification:ubl:signature:Invoice</cbc:ID>
+    <cbc:SignatureMethod>urn:oasis:names:specification:ubl:dsig:enveloped:xades</cbc:SignatureMethod>
+  </cac:Signature>
+  <cac:AccountingSupplierParty>
+    <cac:Party>
+      <cbc:IndustryClassificationCode name="Other information technology service activities n.e.c.">62099</cbc:IndustryClassificationCode>
+      <cac:PartyIdentification>
+        <cbc:ID schemeID="TIN">C20407779999</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyIdentification>
+        <cbc:ID schemeID="BRN">200801012943</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PostalAddress>
+        <cbc:CityName>Cheras</cbc:CityName>
+        <cbc:PostalZone>56000</cbc:PostalZone>
+        <cbc:CountrySubentityCode>14</cbc:CountrySubentityCode>
+        <cac:AddressLine>
+          <cbc:Line>B-3, 13, Jalan 2/142a, </cbc:Line>
+        </cac:AddressLine>
+        <cac:AddressLine>
+          <cbc:Line>Cheras, 56000 Cheras</cbc:Line>
+        </cac:AddressLine>
+        <cac:AddressLine>
+          <cbc:Line>Wilayah Persekutuan Kuala Lumpur</cbc:Line>
+        </cac:AddressLine>
+        <cac:Country>
+          <cbc:IdentificationCode listAgencyID="6" listID="ISO3166-1">MYS</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>M POS SYSTEMS SERVICES</cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+      <cac:Contact>
+        <cbc:Telephone>019-626 3923</cbc:Telephone>
+        <cbc:ElectronicMail>Info@m-pos.com.my</cbc:ElectronicMail>
+      </cac:Contact>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
+  <cac:AccountingCustomerParty>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID schemeID="TIN">C20407777888</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyIdentification>
+        <cbc:ID schemeID="BRN">200801012943</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PostalAddress>
+        <cbc:CityName>Cheras</cbc:CityName>
+        <cbc:PostalZone>56000</cbc:PostalZone>
+        <cbc:CountrySubentityCode>14</cbc:CountrySubentityCode>
+        <cac:AddressLine>
+          <cbc:Line>B-3, 13, Jalan 2/142a, </cbc:Line>
+        </cac:AddressLine>
+        <cac:AddressLine>
+          <cbc:Line>Cheras, 56000 Cheras</cbc:Line>
+        </cac:AddressLine>
+        <cac:AddressLine>
+          <cbc:Line>Cheras, 56000 Cheras</cbc:Line>
+        </cac:AddressLine>
+        <cac:Country>
+          <cbc:IdentificationCode listAgencyID="6" listID="ISO3166-1">MYS</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>M POS SYSTEMS SERVICES</cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+      <cac:Contact>
+        <cbc:Telephone>019-626 3923</cbc:Telephone>
+        <cbc:ElectronicMail>Info@m-pos.com.my</cbc:ElectronicMail>
+      </cac:Contact>
+    </cac:Party>
+  </cac:AccountingCustomerParty>
+  <cac:TaxTotal>
+    <cbc:TaxAmount currencyID="MYR">3.5</cbc:TaxAmount>
+    <cac:TaxSubtotal>
+      <cbc:TaxableAmount currencyID="MYR">3.5</cbc:TaxableAmount>
+      <cbc:TaxAmount currencyID="MYR">3.5</cbc:TaxAmount>
+      <cac:TaxCategory>
+        <cbc:ID>01</cbc:ID>
+        <cbc:Percent>10</cbc:Percent>
+        <cac:TaxScheme>
+          <cbc:ID schemeAgencyID="6" schemeID="UN/ECE 5153">OTH</cbc:ID>
+        </cac:TaxScheme>
+      </cac:TaxCategory>
+    </cac:TaxSubtotal>
+  </cac:TaxTotal>
+  <cac:LegalMonetaryTotal>
+    <cbc:LineExtensionAmount currencyID="MYR">35</cbc:LineExtensionAmount>
+    <cbc:TaxExclusiveAmount currencyID="MYR">35</cbc:TaxExclusiveAmount>
+    <cbc:TaxInclusiveAmount currencyID="MYR">38.5</cbc:TaxInclusiveAmount>
+    <cbc:AllowanceTotalAmount currencyID="MYR">5</cbc:AllowanceTotalAmount>
+    <cbc:PayableAmount currencyID="MYR">38.5</cbc:PayableAmount>
+  </cac:LegalMonetaryTotal>
+  <cac:InvoiceLine>
+    <cbc:ID>1</cbc:ID>
+    <cbc:InvoicedQuantity unitCode="H87">2</cbc:InvoicedQuantity>
+    <cbc:LineExtensionAmount currencyID="MYR">35</cbc:LineExtensionAmount>
+    <cac:AllowanceCharge>
+      <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+      <cbc:AllowanceChargeReason>Item Discount</cbc:AllowanceChargeReason>
+      <cbc:MultiplierFactorNumeric>1</cbc:MultiplierFactorNumeric>
+      <cbc:Amount currencyID="MYR">5</cbc:Amount>
+    </cac:AllowanceCharge>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyID="MYR">3.5</cbc:TaxAmount>
+      <cac:TaxSubtotal>
+        <cbc:TaxableAmount currencyID="MYR">35</cbc:TaxableAmount>
+        <cbc:TaxAmount currencyID="MYR">3.5</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:ID>01</cbc:ID>
+          <cbc:Percent>10</cbc:Percent>
+          <cac:TaxScheme>
+            <cbc:ID schemeAgencyID="6" schemeID="UN/ECE 5153">OTH</cbc:ID>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:Item>
+      <cbc:Description>Computer Monitor 24 inch</cbc:Description>
+      <cac:CommodityClassification>
+        <cbc:ItemClassificationCode listID="CLASS">003</cbc:ItemClassificationCode>
+      </cac:CommodityClassification>
+    </cac:Item>
+    <cac:Price>
+      <cbc:PriceAmount currencyID="MYR">20</cbc:PriceAmount>
+    </cac:Price>
+    <cac:ItemPriceExtension>
+      <cbc:Amount currencyID="MYR">40</cbc:Amount>
+    </cac:ItemPriceExtension>
+  </cac:InvoiceLine>
+</Invoice>
