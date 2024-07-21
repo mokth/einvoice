@@ -8,6 +8,4 @@
 8. Click the Get Document Detail to get the document detail status (if the Status is Valid or Invalid).
 9. The Json file will store in the path u mentioned in the MokTHLibrary.WinTestAPI.exe.config.
 
-10. If u like and want to buy me coffee (u no need to so), i will be happy. scan my TNG QR Code out there.
-11. Sharing is knowledge.
 
