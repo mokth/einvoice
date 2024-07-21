@@ -11,4 +11,4 @@ Tool that help for debugging
       https://microsoft.github.io/XmlNotepad/   
       https://keystore-explorer.org/index.html
 
-If u like and want to buy me coffee (u no need to so), i will be happy. scan my TNG QR Code out there.
+
