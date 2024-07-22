@@ -11,10 +11,6 @@ using System.Xml.Serialization;
 using System.Xml.XPath;
 using System.Security.Cryptography;
 using System.Numerics;
-using static DevExpress.XtraPrinting.Native.ExportOptionsPropertiesNames;
-using DevExpress.XtraReports.UI;
-using DevExpress.CodeParser.VB;
-using DevExpress.CodeParser;
 
 /// <summary>
 /// Author      : TH MOK
@@ -23,7 +19,7 @@ using DevExpress.CodeParser;
 ///
 /// Update By   : KKurosagi
 /// Date        : 22/07/2024
-/// Description : Add "xmlns:ext" at invoice tag if not exist. minor code tuning to generate VALID Xml
+/// Description : Add "xmlns:ext" at invoice tag if not exist. minor code tuning to generate VALID Xml. Use BigInt to parse certificate serial number
 /// </summary>
 namespace AngelMay.EInvoiceLib.Utility
 {
