@@ -165,10 +165,9 @@ namespace AngelMay.EInvoiceLib.Utility
 
         private static void ReadCertFile()
         {
-            //string certPath = "your cert full path";
-            //string certPass = "your cert passsowrd";
-            cert = new X509Certificate2("C:\\DBS_API\\Document\\CADAMSOFT_SDN._BHD..p12", "Vq6{V^D!");
-            //cert.Import(File.ReadAllBytes(certPath), certPass, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable);
+            string certPath = "your cert full path";
+            string certPass = "your cert passsowrd";
+            cert.Import(File.ReadAllBytes(certPath), certPass, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable);
         }
 
         static void PrepareDigestData()
