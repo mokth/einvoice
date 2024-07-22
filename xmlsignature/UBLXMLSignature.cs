@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text;
 using System.Globalization;
@@ -10,11 +10,20 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml.XPath;
 using System.Security.Cryptography;
+using System.Numerics;
+using static DevExpress.XtraPrinting.Native.ExportOptionsPropertiesNames;
+using DevExpress.XtraReports.UI;
+using DevExpress.CodeParser.VB;
+using DevExpress.CodeParser;
 
 /// <summary>
 /// Author      : TH MOK
 /// Date        : 16/07/2024
 /// Description : To manually generate the UBLExtensions scratch. Cause LHDN keep changing. Easy to maintain
+///
+/// Update By   : KKurosagi
+/// Date        : 22/07/2024
+/// Description : Add "xmlns:ext" at invoice tag if not exist. minor code tuning to generate VALID Xml
 /// </summary>
 namespace AngelMay.EInvoiceLib.Utility
 {
@@ -39,9 +48,9 @@ namespace AngelMay.EInvoiceLib.Utility
         public static XmlDocument xmlInv;
 
         static XNamespace xmlns = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
-        static XNamespace cac = "urn:oasis:names:specification:ubl:schema:xsd:CommonSignatureComponents-2";
+        static XNamespace cac = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";
         static XNamespace cbc = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";
-        static XNamespace ext = "urn:oasis:names:specification:ubl:schema:xsd:SignatureAggregateComponents-2";
+        static XNamespace ext = "urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2";
         static XNamespace sac = "urn:oasis:names:specification:ubl:schema:xsd:SignatureAggregateComponents-2";
         static XNamespace sbc = "urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";
         static XNamespace sig = "urn:oasis:names:specification:ubl:schema:xsd:CommonSignatureComponents-2";
@@ -59,16 +68,52 @@ namespace AngelMay.EInvoiceLib.Utility
         /// <param name="docXml"></param>
         public static void StartGenerate(string docXml)
         {
-            invXmlString = docXml;
+            //insert extensions for Ext. MUST HAVE even though the child xml didn't have extension 'ext'
+            XmlDocument tmpInv = new XmlDocument();
+            tmpInv.LoadXml(docXml);
+            if (tmpInv.FirstChild.Attributes["xmlns:ext"] is null)
+            {
+                System.Xml.XmlAttribute newAttribute = tmpInv.CreateAttribute("xmlns:ext");
+                newAttribute.Value = ext.NamespaceName;
+                tmpInv.FirstChild.Attributes.Append(newAttribute);
+            }
+
+            invXmlString = XmlDsigC14N(tmpInv.OuterXml);
             doc = new XmlDocument();
+            doc.PreserveWhitespace = false;
             ReadCertFile();
             PrepareDigestData();
 
             //create a temp Invoice xml, cause need to include all the header xmlns            
             XElement root = InvoiceRoot();
+
             var mainXMl = ToXmlElement(root, doc);
             //now doc contains the whole UBLExtensions struture and data
             doc.AppendChild(mainXMl);
+
+            //replace <ds:DigestMethod ...></ds:DigestMethod> => <ds:DigestMethod ... />
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+            addNameSpace(nsmgr);
+
+            // Find all ds:DigestMethod elements
+            XmlNodeList digestMethods = doc.SelectNodes("//ds:DigestMethod", nsmgr);
+
+            // Remove any child nodes to make them self-closing, but keep attributes
+            foreach (System.Xml.XmlNode digestMethod in digestMethods)
+            {
+                // Create a new empty element with the same name and attributes
+                System.Xml.XmlElement emptyElement = doc.CreateElement(digestMethod.Prefix, digestMethod.LocalName, digestMethod.NamespaceURI);
+                if (digestMethod.Attributes != null)
+                {
+                    foreach (System.Xml.XmlAttribute attr in digestMethod.Attributes)
+                    {
+                        emptyElement.Attributes.Append((System.Xml.XmlAttribute)attr.CloneNode(true));
+                    }
+                }
+
+                // Replace the original element with the new empty element
+                digestMethod.ParentNode.ReplaceChild(emptyElement, digestMethod);
+            }
 
             //get the SignedProperties via xpath
             var propSignXml = getSignPropertiesXML();
@@ -96,11 +141,16 @@ namespace AngelMay.EInvoiceLib.Utility
             var UBLExtensionsXML = docXML.Substring(start, end - start + "</ext:UBLExtensions>".Length);
             var signatureXML = docXML.Substring(start2, end2 - start2 + "</cac:Signature>".Length);
 
+            invXmlString = xmlInv.OuterXml;
+            //===========================
+
+
             start = invXmlString.IndexOf("<cbc:ID>");
             var content = invXmlString.Insert(start, UBLExtensionsXML);
             start = content.IndexOf("<cac:AccountingSupplierParty>");
             content = content.Insert(start, signatureXML);
-            content = XmlDsigC14N(content);
+
+            //content = RunC14N(content);
             xmlInv = new XmlDocument();
             xmlInv.LoadXml(content);
         }
@@ -111,16 +161,18 @@ namespace AngelMay.EInvoiceLib.Utility
             string canonicalXml = XmlDsigC14N(invXmlString);
             xmlInv = new XmlDocument();
             xmlInv.LoadXml(canonicalXml);
-            var processedXml = PreprocessXml(xmlInv.OuterXml);
-            return Sha256Hash(RunC14N(processedXml));
+            var processedXml = PreprocessXml(canonicalXml);
+            return Sha256Hash(processedXml);
+            //return Encoding.UTF8.GetBytes(processedXml);
+
         }
 
         private static void ReadCertFile()
         {
-            string certPath = "your cert full path";
-            string certPass = "your cert passsowrd";
-            cert = new X509Certificate2();
-            cert.Import(File.ReadAllBytes(certPath), certPass, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable);
+            //string certPath = "your cert full path";
+            //string certPass = "your cert passsowrd";
+            cert = new X509Certificate2("C:\\DBS_API\\Document\\CADAMSOFT_SDN._BHD..p12", "Vq6{V^D!");
+            //cert.Import(File.ReadAllBytes(certPath), certPass, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable);
         }
 
         static void PrepareDigestData()
@@ -135,7 +187,8 @@ namespace AngelMay.EInvoiceLib.Utility
             _signData.SignatureValue = Convert.ToBase64String(sign);
             _signData.X509Certificate = Convert.ToBase64String(cert.RawData);
             _signData.X509IssuerName = cert.Issuer;
-            _signData.X509SerialNumber = Int64.Parse(cert.SerialNumber, NumberStyles.HexNumber).ToString();
+            //_signData.X509SerialNumber = Int64.Parse(cert.SerialNumber, NumberStyles.HexNumber).ToString();
+            _signData.X509SerialNumber = BigInteger.Parse(cert.SerialNumber, NumberStyles.HexNumber).ToString();
             _signData.X509SubjectName = cert.Subject;
             _signData.SigningTime = DateTime.UtcNow.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
         }
@@ -148,7 +201,7 @@ namespace AngelMay.EInvoiceLib.Utility
 
             string xpath = "/a:Invoice/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/sig:UBLDocumentSignatures/sac:SignatureInformation/ds:Signature/ds:Object/xades:QualifyingProperties/xades:SignedProperties";
             var element = doc.SelectSingleNode(xpath, nsmgr);
-
+            
             return LinearizeXml(element.OuterXml);
 
         }
@@ -183,9 +236,9 @@ namespace AngelMay.EInvoiceLib.Utility
             nsmgr.AddNamespace("xades", xades.NamespaceName);
         }
 
-        static XmlElement ToXmlElement(this XElement xelement, XmlDocument xmldoc)
+        static System.Xml.XmlElement ToXmlElement(this XElement xelement, XmlDocument xmldoc)
         {
-            return xmldoc.ReadNode(xelement.CreateReader()) as XmlElement;
+            return xmldoc.ReadNode(xelement.CreateReader()) as System.Xml.XmlElement;
         }
         static XElement InvoiceRoot()
         {
@@ -366,7 +419,7 @@ namespace AngelMay.EInvoiceLib.Utility
                     new XElement(xades + "Cert",
                        new XElement(xades + "CertDigest",
                            new XElement(ds + "DigestMethod",
-                                new XAttribute("Algorithm", "http://www.w3.org/2001/04/xmlenc#sha256"), ""),
+                                new XAttribute("Algorithm", "http://www.w3.org/2001/04/xmlenc#sha256")),
                            new XElement(ds + "DigestValue", _signData.CertDigest)
                            ),
                         new XElement(xades + "IssuerSerial",
@@ -395,7 +448,7 @@ namespace AngelMay.EInvoiceLib.Utility
             XmlNamespaceManager nsManager = new XmlNamespaceManager(doc.NameTable);
             nsManager.AddNamespace("cac", "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2");
 
-            XmlNode signatureNode = doc.SelectSingleNode("//cac:Signature", nsManager);
+            System.Xml.XmlNode signatureNode = doc.SelectSingleNode("//cac:Signature", nsManager);
             if (signatureNode != null)
             {
                 signatureNode.ParentNode.RemoveChild(signatureNode);
@@ -414,6 +467,7 @@ namespace AngelMay.EInvoiceLib.Utility
 
             using (var ms = new System.IO.MemoryStream())
             {
+                
                 var stream = (Stream)transform.GetOutput(typeof(Stream));
                 stream.CopyTo(ms);
                 ms.Position = 0;
@@ -464,7 +518,8 @@ namespace AngelMay.EInvoiceLib.Utility
             // Create a XmlDsigC14NTransform object
             XmlDsigC14NTransform transform = new XmlDsigC14NTransform();
             // Load XML data into the transform
-            transform.LoadInput(xmlDoc);
+            transform.LoadInput(xmlDoc);            
+
             // Perform canonicalization
             Stream outputStream = (Stream)transform.GetOutput(typeof(Stream));
 
@@ -497,7 +552,7 @@ namespace AngelMay.EInvoiceLib.Utility
         {
             byte[] signedData = null;            
             using (RSA rsa = cert.GetRSAPrivateKey())
-            {
+            {                
                 try
                 {
                     var sharedParameters = rsa.ExportParameters(false);
