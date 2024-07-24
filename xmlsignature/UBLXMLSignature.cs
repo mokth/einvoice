@@ -424,11 +424,21 @@ namespace AngelMay.EInvoiceLib.Utility
                 }
             }
         }
-
+        //Mok added on 24-07-2024 proper method to LinearizeXml 
         private static string LinearizeXml(string xml)
         {
-            return Regex.Replace(xml, @"\s+", " ").Trim();
+            XDocument xdoc = XDocument.Parse(xml);
+
+            // Convert to string with single line
+            string linearizedXml = xdoc.ToString(SaveOptions.DisableFormatting);
+            return linearizedXml;
+            //return Regex.Replace(xml, @"\s+", " ").Trim();
         }
+       //old methold may have issues take out on 24-07-2024
+       // private static string LinearizeXml(string xml)
+       // {
+       //     return Regex.Replace(xml, @"\s+", " ").Trim();
+       // }
 
         public static string SerializeObjectToXml(object obj)
         {
