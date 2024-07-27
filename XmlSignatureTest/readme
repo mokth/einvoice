@@ -1,1 +1,18 @@
-
+1. unzip the TextEInvoiceXmlSignature.zip to any folder.
+2. goto the folder, edit TestEInvoice.exe.config, fill in the correct value and save it
+    <appSettings>
+		<add key="EInv_Url" value="https://preprod-api.myinvois.hasil.gov.my" />
+		<add key="EInv_portal" value="https://preprod.myinvois.hasil.gov.my" />
+		<add key="EInv_SecretID" value="xxx" />
+		<add key="EInv_SecretKey" value="xxx" />
+		<add key="EInv_CertPath" value="yourcertpath full path" />
+		<add key="EInv_CertPass" value="certpass" />
+		<add key="EInv_JsonPath" value="C:\\test2\\output" />		
+		<add key="EInv_docversion" value="1.1" />		
+	</appSettings>
+ 3. go to cmd prompt. cd to the unzip folder
+ 4. run  TestEInvoice.exe yourinputxmlfile 
+         eg  TestEInvoice.exe C:\\test\einvoice.xml  
+ 5. the input xml fike is without signature, but with the proper input value.
+ 6. the exe will generate the signature in and do submit to the API url mentioned above.
+ 7. the output xml (with signature) will store at the EInv_JsonPath mentioned above.
