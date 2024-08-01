@@ -1,1 +1,10 @@
-
+for decimal in json, minimal is 1 decimal point
+eg:
+0       bad
+0.0     good
+1       bad
+1.0     good
+1.10    bad
+1.1     good
+3.2341  good
+3.23410 bad
