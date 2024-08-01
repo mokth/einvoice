@@ -135,7 +135,7 @@ namespace AngelMay.EInvoiceLib.Utility
             _signData.SignatureValue = Convert.ToBase64String(sign);
             _signData.X509Certificate = Convert.ToBase64String(cert.RawData);
             _signData.X509IssuerName = cert.Issuer;
-            _signData.X509SerialNumber = Int64.Parse(cert.SerialNumber, NumberStyles.HexNumber).ToString();
+            _signData.X509SerialNumber = BigInteger.Parse(cert.SerialNumber, NumberStyles.HexNumber).ToString();
             _signData.X509SubjectName = cert.Subject;
             _signData.SigningTime = DateTime.UtcNow.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
         }
