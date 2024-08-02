@@ -11,8 +11,11 @@
 		<add key="EInv_docversion" value="1.1" />		
 	</appSettings>
  3. go to cmd prompt. cd to the unzip folder
- 4. run  TestEInvoice.exe yourinputxmlfile 
-         eg  TestEInvoice.exe C:\\test\einvoice.xml  
- 5. the input xml fike is without signature, but with the proper input value.
+ 4. run  TestEInvoice.exe yourinput 
+      for XmL   
+        eg  TestEInvoice.exe xml C:\\test\einvoice.xml  
+      for Json
+            TestEInvoice.exe json C:\\test\einvoice.json 
+ 5. the input xml/json file is without signature, but with the proper input value.
  6. the exe will generate the signature in and do submit to the API url mentioned above.
- 7. the output xml (with signature) will store at the EInv_JsonPath mentioned above.
+ 7. the output xml/json (with signature) will store at the EInv_JsonPath mentioned above.
