@@ -1,4 +1,4 @@
-1. unzip the TextEInvoiceXmlSignature.zip to any folder.
+1. unzip the TestEInvoiceVer2.zip to any folder.
 2. goto the folder, edit TestEInvoice.exe.config, fill in the correct value and save it
     <appSettings>
 		<add key="EInv_Url" value="https://preprod-api.myinvois.hasil.gov.my" />
