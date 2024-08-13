@@ -15,7 +15,7 @@ Here is a summary of each command along with its usage examples and descriptions
    -Response: Written in the output folder
 
 2.Submit Document
-   
+   Submit json or xml document to LHDN
    eInvoiceConsole.exe submitxml docno docpath
    eInvoiceConsole.exe submitjson docno docpath
    
@@ -26,7 +26,7 @@ Here is a summary of each command along with its usage examples and descriptions
    -Response: Written in the output folder
 
 3.Submission
-   
+   Get submission status
    eInvoiceConsole.exe submission submissionid
    
    -submissionid: ID of the submission
@@ -34,7 +34,7 @@ Here is a summary of each command along with its usage examples and descriptions
    -Response: Written in the output folder
 
 4.Document
-   
+   Get document info
    eInvoiceConsole.exe document docUUID
    
    -docUUID: Unique identifier of the document
@@ -42,7 +42,7 @@ Here is a summary of each command along with its usage examples and descriptions
    -Response: Written in the output folder
 
 5.Document Detail
-   
+   Get document detail info
    eInvoiceConsole.exe documentdetail docUUID
    
    -docUUID: Unique identifier of the document
@@ -50,7 +50,7 @@ Here is a summary of each command along with its usage examples and descriptions
    -Response: Written in the output folder
 
 6.Cancel Document
-   
+   To cancel a document
    eInvoiceConsole.exe cancel docUUID reasonString
    
    -docUUID: Unique identifier of the document
@@ -59,7 +59,7 @@ Here is a summary of each command along with its usage examples and descriptions
    -Response: Written in the output folder
 
 7.Reject Document
-   
+   To request reject
    eInvoiceConsole.exe reject docUUID reasonString
    
    -docUUID: Unique identifier of the document
@@ -68,7 +68,7 @@ Here is a summary of each command along with its usage examples and descriptions
    -Response: Written in the output folder
 
 8.Recent Documents
-   
+   Get Recent documents 
    eInvoiceConsole.exe recent querystringPath
    
    -querystringPath: refer to https://sdk.myinvois.hasil.gov.my/einvoicingapi/#get-recent-documents
@@ -76,7 +76,7 @@ Here is a summary of each command along with its usage examples and descriptions
    -Response: Written in the output folder
 
 9.Search Documents
-   
+   To search documents
    eInvoiceConsole.exe search querystringPath
    
    -querystringPath: refer to https://sdk.myinvois.hasil.gov.my/einvoicingapi/#search-documents
@@ -84,18 +84,32 @@ Here is a summary of each command along with its usage examples and descriptions
    -Response: Written in the output folder
 
 10.Login
-    
+    Peform login, the decode token is save at the respone folder.
     eInvoiceConsole.exe login
     
     -Example: eInvoiceConsole.exe login
     -Response: Written in the output folder
 
 11.Notification
-    
+    To get notification
     eInvoiceConsole.exe notification querystringPath
     
     -querystringPath: refer to https://sdk.myinvois.hasil.gov.my/api/06-get-notifications/
     -Example: eInvoiceConsole.exe notification dateFrom=2024-08-01T01:59:10Z&dateTo=2024-08-10T01:59:10Z&status=delivered
     -Response: Written in the output folder
+
+12.  Sign XML document
+     generate XML signature and return the XML document with digital signature 
+
+     eInvoiceConsole.exe xmlsign docpath 
+     -Example: eInvoiceConsole.exe xmlsign c:\data\invouce.xml
+     -Response: Written in the output folder
+
+13.  Sign JSON document
+     generate JSON signature and return the JSON document with digital signature 
+
+     eInvoiceConsole.exe jsonsign docpath 
+     -Example: eInvoiceConsole.exe jsonsign c:\data\invouce.json
+     -Response: Written in the output folder
 
 any request please email to mokth@hotmail.com.
