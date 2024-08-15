@@ -16,6 +16,8 @@ Here is a summary of each command along with its usage examples and descriptions
 
 2.Submit Document
    Submit json or xml document to LHDN
+   Pass in the json or xml without signature, the app will generate the signature and submit to LHDN
+
    eInvoiceConsole.exe submitxml docno docpath
    eInvoiceConsole.exe submitjson docno docpath
    
