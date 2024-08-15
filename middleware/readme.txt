@@ -1,3 +1,9 @@
+============================================================
+============================================================
+Updated 15/Aug/2024 at 5pm local Malaysia Time
+please download the zip file again (have missing files).
+============================================================
+============================================================
 
 - Unzip middleappConsole.zip to any folder. (windows base app)
 - Go to the unzip folder, configure the eInvoiceConsole.exe.config file. fill in the valid value. 
