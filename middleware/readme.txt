@@ -2,7 +2,9 @@
 - Unzip middleappConsole.zip to any folder. (windows base app)
 - Go to the unzip folder, configure the eInvoiceConsole.exe.config file. fill in the valid value. 
 - run eInvoiceConsole.exe at cmd prompt. list out all the available commands.
+============================================================
 - Note: the app only connected to SANDBOX API only!!!!.
+============================================================
 
 Here is a summary of each command along with its usage examples and descriptions:
 
