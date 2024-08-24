@@ -1,4 +1,4 @@
-- Unzip WinEInvoiceApp.zip to any folder. (windows base app)
+- Unzip WinEInvoiceWinApp.zip to any folder. (windows base app)
 - Go to the unzip folder, configure the EInvoiceWinApp.exe.config file. fill in the valid value. 
 - run EInvoiceWinApp.exe. 
   1. Load Json or Xml document (without signature) 
