@@ -10,3 +10,12 @@
 
 Note:
 This app is primarily intended for testing and debugging purposes and is not recommended for production use.
+
+
+- You can now view the document (JSON/XML) for hashing (before signing).
+- You can view the final document.
+- You can view the XML sign's QualifyingProperties for the signProp (the most challenging part).
+- You can view all the certificate information.
+- You can save the file or information.
+- Can check the JWT Token payload (check if intermediary is setup properly)
+- Can verify the TIN No
