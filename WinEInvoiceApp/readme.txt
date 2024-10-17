@@ -1,3 +1,14 @@
+updated 17-10-2024
+- You can now generate the e-invoice in PDF format.
+- First, submit a JSON document (currently, the PDF only supports JSON documents).
+- Get the valid document (with a valid UUID).
+- Click "Print Invoice" to generate and display the PDF invoice.
+- Alternatively, you can enter the valid UUID and click "Print Invoice."
+
+Note: The procedure for setup is the same as mentioned below.
+download at : https://drive.google.com/file/d/112ITWTIRqQbahA93-gR9PMePjO57UKgt/view?usp=sharing
+
+
 - Unzip WinEInvoiceWinApp.zip to any folder. (windows base app)
 - Go to the unzip folder, configure the EInvoiceWinApp.exe.config file. fill in the valid value. 
 - run EInvoiceWinApp.exe. 
