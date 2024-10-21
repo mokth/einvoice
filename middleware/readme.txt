@@ -1,3 +1,7 @@
+updated 20-Sep-2024
+- this eInvoiceConsole.exe can be customize to read customize csv/text file from legacy sytem (that contains the invoice/cn/dn data), 
+  to geneate json/xml and submit to lhdn server. the response will be write into text file that the legacy sytem can read.
+
 ============================================================
 ============================================================
 Updated 15/Aug/2024 at 5pm local Malaysia Time
