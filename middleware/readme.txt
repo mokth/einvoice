@@ -1,6 +1,6 @@
 updated 20-Sep-2024
-- this eInvoiceConsole.exe can be customize to read customize csv/text file from legacy sytem (that contains the invoice/cn/dn data), 
-  to geneate json/xml and submit to lhdn server. the response will be write into text file that the legacy sytem can read.
+
+I can customize my console application to read and process CSV or text files from legacy systems containing Invoice, Credit Note, and Debit Note data. The application will generate JSON or XML formats and submit them to the LHDN API server. Additionally, I can implement functionality to write the API response to a local text file for the legacy system to access. Alternatively, I can assist in updating the API response directly to the legacy system's database, such as DBF or Access.
 
 ============================================================
 ============================================================
