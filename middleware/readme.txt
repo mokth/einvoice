@@ -1,6 +1,9 @@
 updated 20-Sep-2024
 
-I can customize my console application to read and process CSV or text files from legacy systems containing Invoice, Credit Note, and Debit Note data. The application will generate JSON or XML formats and submit them to the LHDN API server. Additionally, I can implement functionality to write the API response to a local text file for the legacy system to access. Alternatively, I can assist in updating the API response directly to the legacy system's database, such as DBF or Access.
+I can customize my console application to read and process CSV or text files from legacy systems containing Invoice, Credit Note, and Debit Note data.
+The application will generate JSON or XML formats and submit them to the LHDN API server. Additionally, I can implement functionality to write the 
+API response to a local text file for the legacy system to access. Alternatively, I can assist in updating the API response directly to the
+legacy system's database, such as DBF or Access.
 
 ============================================================
 ============================================================
