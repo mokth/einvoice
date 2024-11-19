@@ -21,6 +21,14 @@ please download the zip file again (have missing files).
 
 Here is a summary of each command along with its usage examples and descriptions:
 
+New added (19/11/2024)
+
+Submit CSV file
+  eInvoiceConsole.exe csv docno fulldocumentpath
+  -Example: eInvoiceConsole.exe csv INV0001 c:\data\invoice.csv
+  -Response: Written in the output folder
+  refer to csv sample and and template file
+
 1.Verify TIN
   
    eInvoiceConsole.exe verify tin idtype idvalue
