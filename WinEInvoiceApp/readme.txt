@@ -1,3 +1,9 @@
+update 22-Jan-2025
+- Download your supplier's submitted document into your portal and view the raw JSON or XML submitted by your supplier.
+- To be able to download, you must supply your own ClientID and Secret ID generated from your portal.
+
+
+
 - Unzip WinEInvoiceWinApp.zip to any folder. (windows base app)
 - Go to the unzip folder, configure the EInvoiceWinApp.exe.config file. fill in the valid value. 
 - run EInvoiceWinApp.exe. 
