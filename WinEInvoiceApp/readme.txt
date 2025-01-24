@@ -1,11 +1,11 @@
-update 22-Jan-2025
-- Download your supplier's submitted document into your portal and view the raw JSON or XML submitted by your supplier.
+update 24-Jan-2025
+- Download your submitted document into your portal and view the raw JSON or XML submitted by youself or your supplier.
 - To be able to download, you must supply your own ClientID and Secret ID generated from your portal.
-
+- Auto prompt the Settings Form to fill up the required settings.
 
 
 - Unzip WinEInvoiceWinApp.zip to any folder. (windows base app)
-- Go to the unzip folder, configure the EInvoiceWinApp.exe.config file. fill in the valid value. 
+
 - run EInvoiceWinApp.exe. 
   1. Load Json or Xml document (without signature) 
   2. Generate Signature
@@ -13,6 +13,7 @@ update 22-Jan-2025
   3. Submit Document (only to sandbox api only)
   4. Get Document/Document Detail status.
   5. Save the output to file for checking and comparing purpose.
+  6. View document in Form or raw format 
 
 Note:
 This app is primarily intended for testing and debugging purposes and is not recommended for production use.
