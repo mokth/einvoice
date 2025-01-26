@@ -1,4 +1,4 @@
-update 24-Jan-2025
+update 26-Jan-2025
 - Download your submitted document into your portal and view the raw JSON or XML submitted by youself or your supplier.
 - To be able to download, you must supply your own ClientID and Secret ID generated from your portal.
 - Auto prompt the Settings Form to fill up the required settings.
@@ -24,5 +24,7 @@ This app is primarily intended for testing and debugging purposes and is not rec
 - You can view the XML sign's QualifyingProperties for the signProp (the most challenging part).
 - You can view all the certificate information.
 - You can save the file or information.
-- Can check the JWT Token payload (check if intermediary is setup properly)
-- Can verify the TIN No
+- Check the JWT Token payload (check if intermediary is setup properly)
+- Verify TIN No
+- Search TIN No.
+- Download document from your portal (submitted or received)
