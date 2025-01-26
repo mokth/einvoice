@@ -2,6 +2,7 @@ update 26-Jan-2025
 - Download your submitted document into your portal and view the raw JSON or XML submitted by youself or your supplier.
 - To be able to download, you must supply your own ClientID and Secret ID generated from your portal.
 - Auto prompt the Settings Form to fill up the required settings.
+- No need to set config file.
 
 
 - Unzip WinEInvoiceWinApp.zip to any folder. (windows base app)
