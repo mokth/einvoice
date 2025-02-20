@@ -1,1 +1,4 @@
-
+I have created a Windows app that allows you to download documents from the MyInvoice portal. You can download documents submitted by yourself 
+or by other vendors. These documents can be downloaded monthly and saved into local databases. You can review the historical data and check the 
+contents of the documents. Additionally, the downloaded list can be exported to an Excel file for auditing purposes.
+- It support sandbox or live portal.
